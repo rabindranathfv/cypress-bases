@@ -35,9 +35,11 @@ describe('Test for wwww.freerangetesters.com', () => {
     })
 
     it('should be a button with content Empeza a aprender', () => {
-        cy.get('#comp-krjarw4p > [data-testid="linkElement"] > .M3I7Z2').should('exist')
-        cy.get('#comp-krjarw4p > [data-testid="linkElement"] > .M3I7Z2').should('be.visible')
-        cy.get('#comp-krjarw4p > [data-testid="linkElement"] > .M3I7Z2').should('have.text', 'Empezá a aprender!')
+        // using aliasfor cleaner test
+        cy.get('#comp-krjarw4p > [data-testid="linkElement"] > .M3I7Z2').as('btnStartLearn')
+        cy.get('btnStartLearn').should('exist')
+        cy.get('btnStartLearn').should('be.visible')
+        cy.get('btnStartLearn').should('have.text', 'Empezá a aprender!')
     })
 
     it.skip('should check if some checkbox is disabled and checked', () => {
