@@ -1,4 +1,5 @@
 {
     "experimentalSessionOrigin": true,
-    "experimentalSessionSupport": true
+    "experimentalSessionSupport": true,
+    "testIsolation": "off"
 }
