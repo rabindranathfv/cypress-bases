@@ -3,7 +3,7 @@ describe('Should test UI', () => {
         cy.visit('https://the-internet.herokuapp.com/')
     })
 
-    it('should use multiple windows', () => {
+    it('should use multiple windows, this test include redirections with some workaround', () => {
         cy.contains('Multiple Windows').click()
         // TODO: Agregando el invoke con el remoteAttr y el target evitamos que se abra una pestana nueva del navegador ya que cypress solo valida la pagina del runner
         cy.contains('Click Here').invoke('removeAttr', 'target').click()
@@ -29,5 +29,12 @@ describe('Should test UI', () => {
         cy.get(':nth-child(4) > .large-2 > img').parent() // retorma el elemento padre de este elemento en el DOM
         cy.get('.example > :nth-child(7)').children() // retorma el elemento hijo de este elemento en el DOM
     })
+
+    // TOD: Example of common invoke use
+    // it('should first', () => {
+    //     cy.contains('Dynamic Content').should('be.hidden')
+    //         .invoke('show')
+    //         .should('be.visible')
+    // })
 
 })
