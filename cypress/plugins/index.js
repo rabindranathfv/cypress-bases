@@ -19,4 +19,20 @@
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+  on('task', {
+    'db:teardown': () => {
+      tierdown = () => {
+        console.log('Haciendo tierdown en la BD!!')
+      }
+      tierdown()
+      return null
+    },
+    'db:seeding': () => {
+      const seeding = () => {
+        console.log('Haciendo seeding en la BD!!')
+      }
+      seeding()
+      return null
+    }
+  })
 }
