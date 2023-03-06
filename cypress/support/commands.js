@@ -23,3 +23,18 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('login', () => {
+    cy.visit('https://the-internet.herokuapp.com/')
+    cy.request({
+        method: 'POST',
+        url: '/authenticate',
+        form: true,
+        body: {
+            username: 'tomsmith',
+            password: 'SuperSecretPassword!'
+        }
+    })
+    cy.getCookie('rack.session').should('exist')
+
+    cy.visit('https://the-internet.herokuapp.com/secure') // redireccionamos manualmente ya que aqui validamos el request que se hace hacia el backend
+})

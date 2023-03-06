@@ -33,7 +33,7 @@ describe('should check session and cookies', () => {
     })
 
     it('should make login using session from cypress and checking an specific cookies ', () => {
-        cy.session('tom', () => {
+        cy.session('RFV', () => {
             cy.visit('https://the-internet.herokuapp.com/login')
             cy.wait(3000)
             cy.get('#username').type('tomsmith')
