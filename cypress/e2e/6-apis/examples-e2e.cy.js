@@ -1,3 +1,5 @@
+const userData = require('../../fixtures/credentials.json')
+
 describe('should login/logout basic Auth with modal and form', () => {
     beforeEach(() => {
         cy.visit('https://the-internet.herokuapp.com/')
@@ -49,6 +51,11 @@ describe('should login/logout basic Auth with modal and form', () => {
         cy.getCookie('rack.session').should('exist')
 
         cy.visit('https://the-internet.herokuapp.com/secure') // redireccionamos manualmente ya que aqui validamos el request que se hace hacia el backend
+        cy.get('.subheader').should('include.text', 'Welcome')
+    })
+
+    it('SAME TEST AS BEFORE BUT WITH COMANDS - should send request to authenticate endpoint with forms data and get login sucessfully', () => {
+        cy.login({ username: userData.username, password: userData.password })
         cy.get('.subheader').should('include.text', 'Welcome')
     })
  })

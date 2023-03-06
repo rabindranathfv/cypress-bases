@@ -23,15 +23,31 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-Cypress.Commands.add('login', () => {
+
+Cypress.Commands.add('iframe', { prevSubject: 'element'}, (iframe, selector) => {
+    Cypress.log({
+        name: 'iframe',
+        consoleProps() {
+            return {
+                iframe,
+            }
+        }
+    })
+    return new Cypress.Promise((resolve, reject) => {
+        resolve(iframe.contents().find(selector))
+    })
+})
+
+
+Cypress.Commands.add('login', ({ username, password}) => {
     cy.visit('https://the-internet.herokuapp.com/')
     cy.request({
         method: 'POST',
         url: '/authenticate',
         form: true,
         body: {
-            username: 'tomsmith',
-            password: 'SuperSecretPassword!'
+            username,
+            password
         }
     })
     cy.getCookie('rack.session').should('exist')
