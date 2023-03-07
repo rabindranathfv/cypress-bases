@@ -11,4 +11,13 @@ module.exports = defineConfig({
       return require('./cypress/plugins/index.js')(on, config)
     },
   },
+  reporter: 'mochawesome',
+  reporterOptions: {
+    charts: true,
+    html: false,
+    json: true,
+    reportDir: "cypress/reports",
+    reportFilename: "report",
+    overwrite: false,
+  }
 })

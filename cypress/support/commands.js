@@ -54,3 +54,11 @@ Cypress.Commands.add('login', ({ username, password}) => {
 
     cy.visit('https://the-internet.herokuapp.com/secure') // redireccionamos manualmente ya que aqui validamos el request que se hace hacia el backend
 })
+
+Cypress.Commands.add('visitInSameTab', (url) => {
+    cy.on('window:before:load', (window) => {
+        cy.stub(window, 'open').as('windowOpen').callsFake(() => {
+            cy.visit(url)
+        })
+    })
+})
